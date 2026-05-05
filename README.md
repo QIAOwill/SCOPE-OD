@@ -1,6 +1,27 @@
 # SCOPE-OD: Semantic Consistency-Oriented Prior-Enhanced OD Flow Forecasting
 
 SCOPE-OD is a semantic-prior-enhanced framework for origin-destination (OD) flow forecasting. The public repository contains executable model code and a small synthetic placeholder dataset. The placeholder files preserve the expected schema and directory layout, but they do not contain private or production data.
+## Framework Overview
+
+The proposed **Semantic Consistency-Oriented Prior-Enhanced Origin-Destination Flow Forecasting (SCOPE-OD)** framework is organized into four progressively connected modules:
+
+1. **Role-Aware Semantic Prior Builder (RSPB)**
+   - Builds role-specific semantic priors for origin cities, destination cities, and OD-pair relations.
+   - Produces discrete semantic labels, soft probability distributions, confidence scores, entropy values, and dense tensor files used by downstream training.
+
+2. **Dynamic Semantic Conditioning Module (DSCM)**
+   - Converts semantic priors and time-varying regime signals into conditioning controls.
+   - Supports semantic FiLM-style control, regime tokens, and uncertainty-aware semantic weighting.
+
+3. **Adaptive Interaction Forecasting Backbone (AIFB)**
+   - Forecasts OD flows through graph-aware interaction modeling.
+   - Combines historical OD observations, graph kernels, pair-level static features, and adaptive pair gates.
+
+4. **Prediction and Semantic Regularization Module (PSRM)**
+   - Generates multi-step OD flow predictions.
+   - Closes the semantic consistency loop by reconstructing static semantic roles and pair relations from latent OD states during training.
+
+Together, these modules explicitly connect semantic prior construction, control generation, interaction restructuring, and semantic reconstruction from latent OD states.
 <img width="6803" height="3779" alt="Image" src="https://github.com/user-attachments/assets/d6ccda51-4458-4ef6-8836-765d8346dea5" />
 
 ## LLM Prompt Configuration
@@ -97,27 +118,6 @@ The parsed LLM outputs are converted into semantic-prior artifacts under `Datase
 | Confidence and entropy values | Control the strength of semantic conditioning and regularization. |
 | Tensor files | Provide model-ready semantic priors for DSCM, AIFB, and PSRM. |
 
-## Framework Overview
-
-The proposed **Semantic Consistency-Oriented Prior-Enhanced Origin-Destination Flow Forecasting (SCOPE-OD)** framework is organized into four progressively connected modules:
-
-1. **Role-Aware Semantic Prior Builder (RSPB)**
-   - Builds role-specific semantic priors for origin cities, destination cities, and OD-pair relations.
-   - Produces discrete semantic labels, soft probability distributions, confidence scores, entropy values, and dense tensor files used by downstream training.
-
-2. **Dynamic Semantic Conditioning Module (DSCM)**
-   - Converts semantic priors and time-varying regime signals into conditioning controls.
-   - Supports semantic FiLM-style control, regime tokens, and uncertainty-aware semantic weighting.
-
-3. **Adaptive Interaction Forecasting Backbone (AIFB)**
-   - Forecasts OD flows through graph-aware interaction modeling.
-   - Combines historical OD observations, graph kernels, pair-level static features, and adaptive pair gates.
-
-4. **Prediction and Semantic Regularization Module (PSRM)**
-   - Generates multi-step OD flow predictions.
-   - Closes the semantic consistency loop by reconstructing static semantic roles and pair relations from latent OD states during training.
-
-Together, these modules explicitly connect semantic prior construction, control generation, interaction restructuring, and semantic reconstruction from latent OD states.
 
 ## Repository Layout
 
