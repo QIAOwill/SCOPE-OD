@@ -2,6 +2,101 @@
 
 SCOPE-OD is a semantic-prior-enhanced framework for origin-destination (OD) flow forecasting. The public repository contains executable model code and a small synthetic placeholder dataset. The placeholder files preserve the expected schema and directory layout, but they do not contain private or production data.
 
+
+## LLM Prompt Configuration
+
+SCOPE-OD uses the LLM only in the **Role-Aware Semantic Prior Builder (RSPB)** stage. The prompt is designed to convert city-level and OD-pair attributes into structured semantic priors. These priors are then saved as tables and tensors for downstream training. The LLM is not used to directly forecast OD flows.
+
+The public repository uses synthetic placeholder data and enables `mock_mode: true` by default. Therefore, the quickstart can run without sending any request to an external LLM service. When `mock_mode` is disabled, the RSPB pipeline follows the prompt structure below.
+
+### System Prompt
+
+```text
+You are an urban mobility semantics analyst.
+Your task is to infer stable semantic mobility roles and OD-pair interaction patterns from structured city and OD-pair attributes.
+Use only the provided attributes. Do not introduce external facts, private information, or unsupported assumptions.
+Return valid JSON only. Do not include Markdown, explanations, or additional text outside the JSON object.
+```
+
+### City-Level Semantic Role Prompt Template
+
+```text
+Given the following city-level attributes for a city in the target study region, infer its semantic mobility role.
+
+City identifier: {city_id}
+City static attributes:
+{city_static_attributes}
+
+City dynamic/context attributes, if available:
+{city_dynamic_attributes}
+
+Assign the city to one origin-side role and one destination-side role.
+Also provide a soft probability distribution over candidate roles, a confidence score, and a short evidence summary based only on the provided attributes.
+
+Candidate origin-side roles:
+{origin_role_candidates}
+
+Candidate destination-side roles:
+{destination_role_candidates}
+
+Return the result using the following JSON schema:
+{
+  "city_id": "<string>",
+  "origin_role": "<string>",
+  "destination_role": "<string>",
+  "origin_role_probabilities": {"<role>": <float>},
+  "destination_role_probabilities": {"<role>": <float>},
+  "confidence": <float>,
+  "evidence": "<short attribute-grounded explanation>"
+}
+```
+
+### OD-Pair Semantic Relation Prompt Template
+
+```text
+Given the following attributes for an origin-destination city pair, infer the semantic interaction relation of the OD pair.
+
+Origin city identifier: {origin_city_id}
+Destination city identifier: {destination_city_id}
+Origin city semantic prior:
+{origin_city_semantic_prior}
+Destination city semantic prior:
+{destination_city_semantic_prior}
+
+OD-pair static attributes:
+{pair_static_attributes}
+
+OD-pair dynamic/context attributes, if available:
+{pair_dynamic_attributes}
+
+Assign the OD pair to one semantic interaction relation.
+Also provide a soft probability distribution over candidate relations, a confidence score, and a short evidence summary based only on the provided attributes.
+
+Candidate OD-pair relation labels:
+{pair_relation_candidates}
+
+Return the result using the following JSON schema:
+{
+  "origin_city_id": "<string>",
+  "destination_city_id": "<string>",
+  "pair_relation": "<string>",
+  "pair_relation_probabilities": {"<relation>": <float>},
+  "confidence": <float>,
+  "evidence": "<short attribute-grounded explanation>"
+}
+```
+
+### Prompt Output Usage
+
+The parsed LLM outputs are converted into semantic-prior artifacts under `Dataset/LLM_Outputs/<Group>/`, including:
+
+| Artifact Type | Purpose |
+| --- | --- |
+| Semantic label tables | Store discrete city-role and OD-pair relation assignments. |
+| Probability tables | Store soft semantic distributions for uncertainty-aware conditioning. |
+| Confidence and entropy values | Control the strength of semantic conditioning and regularization. |
+| Tensor files | Provide model-ready semantic priors for DSCM, AIFB, and PSRM. |
+
 ## Framework Overview
 
 The proposed **Semantic Consistency-Oriented Prior-Enhanced Origin-Destination Flow Forecasting (SCOPE-OD)** framework is organized into four progressively connected modules:
