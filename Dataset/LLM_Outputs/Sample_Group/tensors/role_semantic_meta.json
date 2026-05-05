@@ -1,0 +1,144 @@
+{
+  "city_id_to_index": {
+    "1001": 0,
+    "1002": 1,
+    "1003": 2,
+    "1004": 3,
+    "1005": 4
+  },
+  "feature_names": {
+    "origin_city_static_sem": [
+      "outflow_push_strength",
+      "labor_export_tendency",
+      "cost_escape_pressure",
+      "intercity_departure_readiness",
+      "outward_business_linkage",
+      "tourism_departure_propensity",
+      "administrative_radiation_out",
+      "transport_departure_support"
+    ],
+    "destination_city_static_sem": [
+      "inflow_pull_strength",
+      "job_absorption_capacity",
+      "service_absorption_capacity",
+      "amenity_attractiveness",
+      "tourism_reception_capacity",
+      "policy_resource_concentration",
+      "gateway_arrival_support",
+      "settlement_attractiveness"
+    ],
+    "pair_relation_static_sem": [
+      "geographic_friction",
+      "transport_connectivity",
+      "administrative_barrier",
+      "economic_complementarity",
+      "functional_complementarity",
+      "migration_cost",
+      "accessibility_advantage"
+    ],
+    "city_static_sem": [
+      "origin::outflow_push_strength",
+      "origin::labor_export_tendency",
+      "origin::cost_escape_pressure",
+      "origin::intercity_departure_readiness",
+      "origin::outward_business_linkage",
+      "origin::tourism_departure_propensity",
+      "origin::administrative_radiation_out",
+      "origin::transport_departure_support",
+      "destination::inflow_pull_strength",
+      "destination::job_absorption_capacity",
+      "destination::service_absorption_capacity",
+      "destination::amenity_attractiveness",
+      "destination::tourism_reception_capacity",
+      "destination::policy_resource_concentration",
+      "destination::gateway_arrival_support",
+      "destination::settlement_attractiveness"
+    ],
+    "pair_static_sem": [
+      "geographic_friction",
+      "transport_connectivity",
+      "administrative_barrier",
+      "economic_complementarity",
+      "functional_complementarity",
+      "migration_cost",
+      "accessibility_advantage"
+    ]
+  },
+  "probability_bins": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "shapes": {
+    "origin_city_static_sem": [
+      5,
+      8
+    ],
+    "destination_city_static_sem": [
+      5,
+      8
+    ],
+    "pair_relation_static_sem": [
+      5,
+      5,
+      7
+    ],
+    "pair_mask": [
+      5,
+      5
+    ],
+    "city_static_sem": [
+      5,
+      16
+    ],
+    "pair_static_sem": [
+      5,
+      5,
+      7
+    ],
+    "origin_city_static_sem_prob": [
+      5,
+      8,
+      5
+    ],
+    "destination_city_static_sem_prob": [
+      5,
+      8,
+      5
+    ],
+    "pair_relation_static_sem_prob": [
+      5,
+      5,
+      7,
+      5
+    ],
+    "origin_city_static_sem_confidence": [
+      5,
+      8
+    ],
+    "destination_city_static_sem_confidence": [
+      5,
+      8
+    ],
+    "pair_relation_static_sem_confidence": [
+      5,
+      5,
+      7
+    ],
+    "origin_city_static_sem_entropy": [
+      5,
+      8
+    ],
+    "destination_city_static_sem_entropy": [
+      5,
+      8
+    ],
+    "pair_relation_static_sem_entropy": [
+      5,
+      5,
+      7
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "city_group": "Sample_Group",
+  "task_type": [
+    "single_city"
+  ],
+  "few_shot_ratio": [
+    0.1
+  ],
+  "num_history": [
+    7
+  ],
+  "future_steps": [
+    3
+  ],
+  "split_ratio": [
+    [
+      7,
+      2,
+      1
+    ]
+  ],
+  "num_epochs": [
+    2
+  ],
+  "batch_size": [
+    4
+  ],
+  "lr": [
+    0.001
+  ],
+  "weight_decay": [
+    1e-05
+  ],
+  "hidden_dim": [
+    16
+  ],
+  "K": [
+    2
+  ],
+  "num_layers": [
+    1
+  ],
+  "kernel_type": [
+    "chebyshev"
+  ],
+  "use_scheduler": [
+    true
+  ],
+  "seed": [
+    42
+  ],
+  "num_workers": [
+    0
+  ],
+  "best_metric": [
+    "flow_wmape"
+  ],
+  "grad_clip": [
+    1.0
+  ],
+  "huber_delta": [
+    1.0
+  ],
+  "wmape_weight": [
+    0.2
+  ],
+  "semantic_hidden_dim": [
+    16
+  ],
+  "semantic_cond_dim": [
+    16
+  ],
+  "semantic_vocab_size": [
+    5
+  ],
+  "lambda_sem_ce": [
+    0.0001
+  ],
+  "lambda_sem_origin": [
+    0.001
+  ],
+  "lambda_sem_destination": [
+    0.001
+  ],
+  "lambda_sem_pair": [
+    0.002
+  ],
+  "use_semantic_alignment": [
+    true
+  ],
+  "use_regime_token": [
+    true
+  ],
+  "use_film_controller": [
+    true
+  ],
+  "use_pair_gate": [
+    true
+  ],
+  "use_uncertainty_weighting": [
+    false
+  ],
+  "uncertainty_mode": [
+    "prob_margin"
+  ],
+  "uncertainty_min_weight": [
+    0.3
+  ],
+  "use_lora_adaptation": [
+    false
+  ],
+  "lora_rank": [
+    4
+  ],
+  "lora_alpha": [
+    8.0
+  ],
+  "freeze_base_when_lora": [
+    false
+  ],
+  "max_train_windows": [
+    8
+  ],
+  "max_val_windows": [
+    4
+  ],
+  "max_test_windows": [
+    4
+  ]
+}

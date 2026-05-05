@@ -1,0 +1,18 @@
+{
+  "api_key": "YOUR_DEEPSEEK_API_KEY",
+  "base_url": "https://api.deepseek.com/chat/completions",
+  "model": "deepseek-chat",
+  "timeout": 180,
+  "max_tokens": 1200,
+  "temperature": 0.0,
+  "use_json_mode": true,
+  "sleep_seconds": 0.2,
+  "max_retries": 4,
+  "semantic_num_samples": 3,
+  "semantic_temperature_list": [
+    0.0,
+    0.2,
+    0.4
+  ],
+  "mock_mode": true
+}
